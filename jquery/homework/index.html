@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My favourite cities</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+  <!-- Standard bootstrap container with some rows and div's with id. Nothing too crazy-->
+  <div class="jumbotron">
+    <div class="container container-fluid">
+      <h1>Here are my favourite spots</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime distinctio corporis fugit sapiente eos ipsam
+        dicta
+        nostrum fugiat voluptas, at modi earum, iure commodi veritatis saepe excepturi quas officiis ad!</p>
+    </div>
+  </div>
+  <div class="container container-fluid">
+    <div id="favourite-spots" class="row">
+    </div>
+  </div>
+  <!-- End of the HTML. Everything else will be added to the page via javascript -->
+
+  <!-- Link to the jQuery library. Required by bootstrap -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+  <!-- The code that populates the page -->
+  <script type="text/javascript">
+    /* This tell the browser to wait until the documemt ready before running the code. For a document to be ready all of the HTML, CSS and JS has to be loaded. */
+    $(document).ready(function () {
+      const cities = ['Athens', 'Tiblisi', 'Budapest', 'Bangkok', 'Kopenhagen', 'Disneyland', 'Reykjavik'];
+      const cityImages = ['athens.jpg', 'tiblisi.jpg', 'budapest.jpg', 'bangkok.jpg', 'kopenhagen.jpg', 'disneyland.jpg', 'reykjavik.jpg'];
+      const cityDescription = ['The nicest athmospere', 'Great vine!','We loved the music', 'The best streetfood on earth', "Simply WOW", "It was magical", "You really should go there!"]
+
+      for (let key = 0; key < cities.length; key = key + 1) {
+        console.log(cities[key] + ' is beatiful. You should definitely visit it one day. Here\'s a Picture of it ' + cityImages[key]+ cityDescription[key]);
+
+        $('#favourite-spots').append('<div class="col-xs-12 col-md-6 col-lg-3"><div class="card"><div class="view overlay zoom"><img class="card-img-top img-fluid" src="' + cityImages[key] + '"></div><div class="card-body"><h5 class="card-title">' + cities[key] + '</h5>'+ cityDescription[key]+'<button class="btn btn-city btn-sm">Learn more</button></div></div></div>');
+
+        // $('#favourite-spots').append(`
+        //   <div class="card col-4">
+        //     <img class="card-img-top" src="${cityImages[key]}">
+        //     <div class="card-body">
+        //       ${cities[key]}
+        //     </div>
+        //   </div>
+        // `);
+      }
+    });
+  </script>
+</body>
+
+</html>
