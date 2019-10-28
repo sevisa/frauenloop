@@ -18,9 +18,7 @@
   <div class="jumbotron">
     <div class="container container-fluid">
       <h1>Here are my favourite spots</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime distinctio corporis fugit sapiente eos ipsam
-        dicta
-        nostrum fugiat voluptas, at modi earum, iure commodi veritatis saepe excepturi quas officiis ad!</p>
+      <p>On this page you can find my favourite cities. Have fun browsing!</p>
     </div>
   </div>
   <div class="container container-fluid">
@@ -45,13 +43,13 @@
     /* This tell the browser to wait until the documemt ready before running the code. For a document to be ready all of the HTML, CSS and JS has to be loaded. */
     $(document).ready(function () {
       const cities = ['Athens', 'Tiblisi', 'Budapest', 'Bangkok', 'Kopenhagen', 'Disneyland', 'Reykjavik'];
-      const cityImages = ['athens.jpg', 'tiblisi.jpg', 'budapest.jpg', 'bangkok.jpg', 'kopenhagen.jpg', 'disneyland.jpg', 'reykjavik.jpg'];
+      const cityImages = ['assets/athens.jpg', 'assets/tiblisi.jpg', 'assets/budapest.jpg', 'assets/bangkok.jpg', 'assets/kopenhagen.jpg', 'assets/disneyland.jpg', 'assets/reykjavik.jpg'];
       const cityDescription = ['The nicest athmosphere', 'Great vine!','We loved the music', 'The best streetfood on earth', "Simply WOW", "It was magical", "You really should go there!"]
 
       for (let key = 0; key < cities.length; key = key + 1) {
         console.log(cities[key] + ' is beatiful. You should definitely visit it one day. Here\'s a Picture of it ' + cityImages[key]+ cityDescription[key]);
 
-        $('#favourite-spots').append('<div class="col-xs-12 col-md-6 col-lg-3"><div class="card"><div class="view overlay zoom"><img class="card-img-top img-fluid" src="' + cityImages[key] + '"></div><div class="card-body"><h5 class="card-title">' + cities[key] + '</h5>'+ cityDescription[key]+'<button class="btn btn-city btn-sm">Learn more</button></div></div></div>');
+        $('#favourite-spots').append('<div class="col-xs-12 col-md-6 col-lg-3"><div class="card"><div class="view overlay zoom"><img class="card-img-top img-fluid" src="' + cityImages[key] + '"></div><div class="card-body"><h5 class="card-title">' + cities[key] + '</h5>'+ cityDescription[key]+'<button class="btn btn-city btn-sm">Read more</button></div></div></div>');
 
         // $('#favourite-spots').append(`
         //   <div class="card col-4">
