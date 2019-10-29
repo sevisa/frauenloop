@@ -1,7 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Beth+Ellen&display=swap');
 
-
+.flag-icon{
+  background-size: contain;
+background-position: 50%;
+background-repeat: no-repeat;
+} 
 html, body {
   background-color: #fff;
   font-family: 'Raleway', sans-serif;
@@ -14,7 +18,7 @@ h1 {
 
 p {
   font-size: 14px;
-width: auto;
+  width: auto;
 }
 
 
@@ -29,14 +33,24 @@ i {
   background-color:rgb(51, 37, 54);
   background-image: linear-gradient(to right bottom, #332536, #2f1e33, #2c1731, #280f2e, #24062b);  color: white;
   text-align: left;
-  height: 50vh;
+  height: 65vh;
   display:flex;
   position: relative;
 }
 
 .teaser-content {
-align-content: left;
-top: 50%;}
+  align-content: left;
+  top: 50%;}
+
+.instruction {
+  margin: 0 auto ;
+  z-index: 2;
+  position: absolute;
+  bottom: 150px;
+  left: 50%;
+  transform: translate(-50%, 0)
+}
+
 
 .btn {
   color: white; 
@@ -47,6 +61,7 @@ top: 50%;}
 .btn-male {
   background-color: #7873f5;
 }
+
 .card {
   margin: 20px 20px;
   margin-bottom: 20px;
@@ -54,6 +69,40 @@ top: 50%;}
   box-shadow: none;
 }
 
+.image-container {
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #008CBA;
+  border-radius: 50%;
+}
+
+
+.image-container:hover .overlay {
+  opacity: 0.8;
+}
+
+/* .age {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+} */
 .card .card-body .card-text.male {
   color: #7873f5;
 }

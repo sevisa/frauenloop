@@ -10,6 +10,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/flag-icon.css">
   <link rel="stylesheet" href="app.css">
 </head>
 
@@ -18,22 +19,25 @@
     <div class="container container-fluid">
       <h1>Lovebirds</h1>
       <p>we spread love all over the world</p>
+      <div class="row">
+        <div class="instruction">
+          <h5>Who are you looking for?</h5>
+          <a href="#random-people" class="btn btn-load-people btn-female" data-type="female">female</a>
+          <a href="#random-people" class="btn btn-load-people btn-diverse purple-gradient" data-type="diverse">i don't care</a>
+          <a href="#random-people" class="btn btn-load-people btn-male" data-type="male">male</a>
+        </div>
+      </div>
     </div>
     <div class="bg_heart"></div>
   </div>
   <div class="container container-fluid">
-    <div class="row">
-      <div class="instruction">
-        <h5>Who are you looking for?</h5>
-        <div class="btn btn-female">female</div>
-        <div class="btn btn-diverse purple-gradient">i don't care</div>
-        <div class="btn btn-male">male</div>
-      </div>
-    </div>
-    <div id="random-people" class="row">
-    </div>
+    <div id="random-people" class="row"></div>
   </div>
   <!-- End of the HTML. Everything else will be added to the page via javascript -->
+
+
+
+
 
   <!-- Link to the jQuery library. Required by bootstrap -->
   <!-- JQuery -->
@@ -75,49 +79,72 @@
 
       // End of heart animation 
 
+      $(".btn-load-people").on("click", function () {
+        // mit "this" wird der button genommen, auf den gerade geklickt wurde und der entsprechende data type reingegeben
+        // console.log($(this).data('type'))
+        const genderType = $(this).data('type')
+        // hier wird alles aus dem element random-people gelöscht was vorher drin war nach click-event
+        $('#random-people').html('');
 
-      $.ajax({
-        url: 'https://randomuser.me/api/?results=10&',
-        dataType: 'json',
-        success: function (data) {
-          // console.log(data);
-          // console.log(data.results[0].name.first+ ' ' + data.results[0].name.last)
-          const names = []
-          const maleColor = 'blue'
-          const femaleColor = 'pink'
+        $.ajax({
+          url: `https://randomuser.me/api/?results=50&gender=${genderType}`,
+          dataType: 'json',
+          success: function (data) {
+            // console.log(data);
+            // console.log(data.results[0].name.first+ ' ' + data.results[0].name.last)
+            const names = []
+           
 
-          for (let key = 0; key < data.results.length; key = key + 1) {
-            var user = data.results[key]
-            const social = '<i class="fab fa-github"></i><i class="fab fa-twitter"></i><i class="fab fa-facebook"></i>'
-            // const location = user.timezone
-            console.log(user.name.first + ' ' + user.name.last + ' ' + user.picture.large + ' ' + user.gender)
+            for (let key = 0; key < data.results.length; key = key + 1) {
+              var user = data.results[key]
+              const social = '<i class="fab fa-github"></i><i class="fab fa-twitter"></i><i class="fab fa-facebook"></i>'
+              console.log(user.name.first + ' ' + user.name.last + ' ' + user.picture.large + ' ' + user.gender + user.nat)
 
-            if (user.gender === 'male') {
-              console.log(maleColor)
-            }
 
-            else {
-              console.log(femaleColor)
-            }
+              // const maleColor = 'blue'
+              // const femaleColor = 'pink'
+              // if (user.gender === 'male') {
+              //   console.log(maleColor)
+              // }
 
-            $('#random-people').append('<div class="col"><div class="card"><img class="card-img-top img-fluid rounded-circle" src="' + user.picture.large + '"><div class="card-body"><div class="card-title"><p>' + user.name.first + ' ' + user.name.last + '<br></div><div class= "card-text">hello<br></div><div class= "card-text' + ' ' + user.gender + '"">' + social + '</p></div></div></div>');
+              // else {
+              //   console.log(femaleColor)
+              // };
+
+              $('#random-people').append(`
+                <div class="col">
+                  <div class="card card-container">
+                    <div class="image-container">
+                      <img class="card-img-top img-fluid rounded-circle" src="${user.picture.large}">
+                      <div class="overlay">
+                      <div class="age ${user.dob.age}">
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="card-title">
+                        <p>${user.name.first} ${user.name.last}<br></p>
+                      </div>
+                      <div class= "card-text">
+                        <span class="flag-icon flag-icon-${user.nat.toLowerCase()}"></span><br>
+                      </div>
+                      <div class= "card-text ${user.gender}">
+                        ${social}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              `);
+
+            };
           }
-          $(".btn-female").on("click", function () {
-      /* Here we combine the for/each loop with append to write multiple values to the page */
-      $.each(user, function(gender) {
-        $(".btn-female").append(user.gender.female);
-        console.log('all females')
+        });
       });
+
+
 
     });
-        }
-      });
-    })
-    // $('.jumbotron').on('click', function () {
-
-  // ​});
-
   </script>
 </body>
+
 
 </html>
