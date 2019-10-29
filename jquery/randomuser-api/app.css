@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Beth+Ellen&display=swap');
 
 
 html, body {
@@ -6,8 +7,13 @@ html, body {
   font-family: 'Raleway', sans-serif;
 }
 
+h1 {
+  font-family: 'Beth Ellen', cursive;
+  font-size: 50px;
+}
+
 p {
-  font-size: 16px;
+  font-size: 14px;
 width: auto;
 }
 
@@ -20,17 +26,27 @@ i {
   min-height:128px;
 }
 .jumbotron {
-  background-color:rgb(183, 130, 194);
-  color: white;
-  text-align: center;
+  background-color:rgb(51, 37, 54);
+  background-image: linear-gradient(to right bottom, #332536, #2f1e33, #2c1731, #280f2e, #24062b);  color: white;
+  text-align: left;
   height: 50vh;
   display:flex;
+  position: relative;
 }
 
 .teaser-content {
-align-content: center;
+align-content: left;
 top: 50%;}
 
+.btn {
+  color: white; 
+}
+.btn-female {
+  background-color: #ff6ec4;
+}
+.btn-male {
+  background-color: #7873f5;
+}
 .card {
   margin: 20px 20px;
   margin-bottom: 20px;
@@ -39,11 +55,11 @@ top: 50%;}
 }
 
 .card .card-body .card-text.male {
-  color: blue;
+  color: #7873f5;
 }
 
 .card .card-body .card-text.female {
-  color:pink;
+  color: #ff6ec4;
 }
 
 .card-body {
@@ -54,12 +70,12 @@ top: 50%;}
 /* Heart Animations */
 
 .bg_heart {
-  position: relative;
+  position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  width: 50%;
   height: 100%;
-  overflow: hidden
+  overflow: hidden;
 }
 
 .heart {
