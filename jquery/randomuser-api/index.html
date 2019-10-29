@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet new People</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+  <div class="jumbotron">
+
+    <div class="bg_heart">
+      <div class="teaser-content">
+      <h1>Meet new People</h1>
+      <p>From all over the World!</p>
+    </div>
+      </div>
+    </div>
+    <div class="container container-fluid">
+    
+  </div>
+  <div class="container container-fluid">
+    <div id="favourite-spots" class="row">
+    </div>
+    <div id="random-people" class="row">
+    </div>
+  </div>
+  <!-- End of the HTML. Everything else will be added to the page via javascript -->
+  <!-- Link to the jQuery library. Required by bootstrap -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+  <!-- The code that populates the page -->
+  <script type="text/javascript">
+    /* This tell the browser to wait until the documemt ready before running the code. For a document to be ready all of the HTML, CSS and JS has to be loaded. */
+    // $(document).ready(function () {
+    $("#header-plugin").load("https://vivinantony.github.io/header-plugin/", function () {
+      $("a.back-to-link").attr("href", "http://blog.thelittletechie.com/2015/03/love-heart-animation-using-css3.html#tlt")
+    });
+
+    var love = setInterval(function () {
+      var r_num = Math.floor(Math.random() * 40) + 1;
+      var r_size = Math.floor(Math.random() * 65) + 10;
+      var r_left = Math.floor(Math.random() * 100) + 1;
+      var r_bg = Math.floor(Math.random() * 25) + 100;
+      var r_time = Math.floor(Math.random() * 5) + 5;
+
+      $('.bg_heart').append("<div class='heart' style='width:" + r_size + "px;height:" + r_size + "px;left:" + r_left + "%;background:rgba(255," + (r_bg - 25) + "," + r_bg + ",1);-webkit-animation:love " + r_time + "s ease;-moz-animation:love " + r_time + "s ease;-ms-animation:love " + r_time + "s ease;animation:love " + r_time + "s ease'></div>");
+
+      $('.bg_heart').append("<div class='heart' style='width:" + (r_size - 10) + "px;height:" + (r_size - 10) + "px;left:" + (r_left + r_num) + "%;background:rgba(255," + (r_bg - 25) + "," + (r_bg + 25) + ",1);-webkit-animation:love " + (r_time + 5) + "s ease;-moz-animation:love " + (r_time + 5) + "s ease;-ms-animation:love " + (r_time + 5) + "s ease;animation:love " + (r_time + 5) + "s ease'></div>");
+
+      $('.heart').each(function () {
+        var top = $(this).css("top").replace(/[^-\d\.]/g, '');
+        var width = $(this).css("width").replace(/[^-\d\.]/g, '');
+        if (top <= -100 || width >= 150) {
+          $(this).detach();
+        }
+      });
+    }, 500);
+    $.ajax({
+      url: 'https://randomuser.me/api/?results=10',
+      dataType: 'json',
+      success: function (data) {
+        console.log(data);
+        // console.log(data.results[0].name.first+ ' ' + data.results[0].name.last)
+        const names = []
+        const maleColor = 'blue'
+        const femaleColor = 'pink'
+
+        for (let key = 0; key < data.results.length; key = key + 1) {
+          var user = data.results[key]
+          const social = '<i class="fab fa-github"></i><i class="fab fa-twitter"></i><i class="fab fa-facebook"></i>'
+          // const location = user.timezone
+          console.log(user.name.first + ' ' + user.name.last + ' ' + user.picture.large + ' ' + user.gender)
+
+          if (user.gender === 'male') {
+            console.log(maleColor)
+          }
+
+          else {
+            console.log(femaleColor)
+          }
+
+          $('#random-people').append('<div class="col"><div class="card"><img class="card-img-top img-fluid rounded-circle" src="' + user.picture.large + '"><div class="card-body"><div class="card-title"><p>' + user.name.first + ' ' + user.name.last + '<br></div><div class= "card-text">hello<br></div><div class= "card-text' + ' ' + user.gender + '"">' + social + '</p></div></div></div>');
+        }
+      }
+    });
+
+    // });
+  </script>
+</body>
+
+</html>
