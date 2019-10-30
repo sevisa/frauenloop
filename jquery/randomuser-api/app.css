@@ -33,7 +33,7 @@ i {
   background-color:rgb(51, 37, 54);
   background-image: linear-gradient(to right bottom, #332536, #2f1e33, #2c1731, #280f2e, #24062b);  color: white;
   text-align: left;
-  height: 65vh;
+  height: 100vh;
   display:flex;
   position: relative;
 }

@@ -22,9 +22,9 @@
       <div class="row">
         <div class="instruction">
           <h5>Who are you looking for?</h5>
-          <a href="#random-people" class="btn btn-load-people btn-female" data-type="female">female</a>
-          <a href="#random-people" class="btn btn-load-people btn-diverse purple-gradient" data-type="diverse">i don't care</a>
-          <a href="#random-people" class="btn btn-load-people btn-male" data-type="male">male</a>
+          <a href="#" class="btn btn-load-people btn-female" data-type="female">female</a>
+          <a href="#" class="btn btn-load-people btn-diverse purple-gradient" data-type="diverse">i don't care</a>
+          <a href="#" class="btn btn-load-people btn-male" data-type="male">male</a>
         </div>
       </div>
     </div>
@@ -117,7 +117,7 @@
                     <div class="image-container">
                       <img class="card-img-top img-fluid rounded-circle" src="${user.picture.large}">
                       <div class="overlay">
-                      <div class="age ${user.dob.age}">
+                        <ul><li>age: ${user.dob.age}</li><li>from ${user.location.city}</li></ul>
                       </div>
                     </div>
                     <div class="card-body">
@@ -135,7 +135,9 @@
                 </div>
               `);
 
-            };
+            };            
+            window.location.href = "#random-people"
+
           }
         });
       });
