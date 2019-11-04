@@ -11,7 +11,7 @@
   <!-- Material Design Bootstrap -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/flag-icon.css">
-  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="css/app.css">
 </head>
 
 <body>
@@ -31,7 +31,7 @@
     <div class="bg_heart"></div>
   </div>
   <div class="container container-fluid">
-    <div id="random-people" class="row"></div>
+    <div id="random-people" class="row"> </div>
   </div>
   <!-- End of the HTML. Everything else will be added to the page via javascript -->
 
@@ -82,7 +82,7 @@
       $(".btn-load-people").on("click", function () {
         // mit "this" wird der button genommen, auf den gerade geklickt wurde und der entsprechende data type reingegeben
         // console.log($(this).data('type'))
-        const genderType = $(this).data('type')
+        const genderType = $(this).attr('data-type')
         // hier wird alles aus dem element random-people gelöscht was vorher drin war nach click-event
         $('#random-people').html('');
 
@@ -117,7 +117,8 @@
                     <div class="image-container">
                       <img class="card-img-top img-fluid rounded-circle" src="${user.picture.large}">
                       <div class="overlay">
-                        <ul><li>age: ${user.dob.age}</li><li>from ${user.location.city}</li></ul>
+                        age: ${user.dob.age}<br>
+                        from ${user.location.city}
                       </div>
                     </div>
                     <div class="card-body">
@@ -127,7 +128,7 @@
                       <div class= "card-text">
                         <span class="flag-icon flag-icon-${user.nat.toLowerCase()}"></span><br>
                       </div>
-                      <div class= "card-text ${user.gender}">
+                      <div class="card-text ${user.gender}">
                         ${social}
                       </div>
                     </div>
